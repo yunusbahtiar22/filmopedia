@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 export type Movie = {
   adult: boolean;
   backdrop_path: string;
-  genre_ids: any;
+  genre_ids: Record<string, number>;
   id: number;
   orginal_language: string;
   original_title: string;
@@ -19,7 +19,7 @@ export type Movie = {
 
 const BASE_URL = "https://api.themoviedb.org/3";
 
-const getPlaying = async (): Promise<Movie[]> => {
+const getPlaying: () => Promise<Movie[]> = async () => {
   try {
     const raw = await fetch(
       `${BASE_URL}/movie/now_playing?api_key=${
